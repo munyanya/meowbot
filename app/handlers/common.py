@@ -9,12 +9,11 @@ from texti import *
 
 async def menu(message: types.Message):
     menu_kb = ReplyKeyboardMarkup(resize_keyboard=True)
-    v1 = KeyboardButton(text='котик')
+    v1 = KeyboardButton(text=menu_btn1)
     v2 = KeyboardButton(text='кися')
     v3 = KeyboardButton(text='кося')
 
     menu_kb.add(v1, v2, v3)
-    await message.answer('Main.menu', reply_markup=menu_kb)
 
     inline_menu_kb = InlineKeyboardMarkup()
     b1 = InlineKeyboardButton(text='мяу', callback_data='callback1', url = "https://astrafarm.com/images/encyclopedia/ittenVes170221.jpg")
@@ -44,6 +43,6 @@ def register_common_hadlers(dp: Dispatcher):
     dp.register_message_handler(menu, commands = 'menu', state='*')
     dp.register_message_handler(v3, Text(equals='кося', ignore_case=True))
     dp.register_message_handler(v2, Text(equals='кися', ignore_case=True))
-    dp.register_message_handler(v1, Text(equals='котик', ignore_case=True))
-    # dp.register_message_handler(echo, content_types= types.message.ContentType.TEXT)
+    dp.register_message_handler(v1, Text(equals=menu_btn1, ignore_case=True))
+    #dp.register_message_handler(echo, content_types= types.message.ContentType.TEXT)
     dp.register_callback_query_handler(callback_handler)
